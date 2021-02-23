@@ -1,25 +1,35 @@
 import './App.css';
 import logo from './logo.svg';
 
+
 function App() {
-  let name = "Rayhan"
-  let date = new Date();
   var style = {
-    color : "red",
-    backgroundColor : "green"
+    color: "red",
+    backgroundColor: "green"
   }
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>Learn React</p>
-        <h1 style={{color : "red",backgroundColor: "green"}}>Hello {name}</h1>
-        <h2 className="" style={style} >Today is {date.getDate()}/{date.getMonth()+1}/{date.getFullYear()}</h2>
+        <Person></Person>
+        <Person></Person>
+        <Person></Person>
       </header>
     </div>
+  );
+}
+var nameStyle = {
+  color : "green"
+}
+function Person() {
+  return (
+    <div style={{ backgroundColor: "goldenrod", borderRadius: "20px", padding: "10px",margin: "10px" }}>
+      <h3>Hello <span style={{ color: 'red' }}>Mr,</span></h3>
+      <h2 style={nameStyle}>Nur Mohammad Rayhan</h2>
+      <div>
+        <button class="btn btn-primary">Details</button>
+      </div>
+    </div>
+
   );
 }
 
