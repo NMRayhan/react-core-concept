@@ -1,7 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
+import logo from './logo.svg';
 
 function App() {
+  let name = "Rayhan"
+  let date = new Date();
+  var style = {
+    color : "red",
+    backgroundColor : "green"
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -9,14 +15,9 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Learn React</p>
+        <h1 style={{color : "red",backgroundColor: "green"}}>Hello {name}</h1>
+        <h2 className="" style={style} >Today is {date.getDate()}/{date.getMonth()+1}/{date.getFullYear()}</h2>
       </header>
     </div>
   );
