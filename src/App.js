@@ -1,6 +1,11 @@
 import './App.css';
-import logo from './logo.svg';
 
+
+const products =[
+  {name : "Photoshop", price: "$99.90"},
+  {name : "Illustrator", price: "$45.90"},
+  {name : "PDF Reader", price: "$35.90"}
+]
 
 function App() {
   var style = {
@@ -11,20 +16,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div className="row">
-          <div className="col-md-3 col-lg-4">
-            <Person name={names[0]}></Person>
-          </div>
-          <div className="col-md-3 col-lg-4">
-            <Person name={names[1]}></Person>
-          </div>
-          <div className="col-md-3 col-lg-4">
-            <Person name={names[2]}></Person>
-          </div>
-          <div className="col-md-3 col-lg-4">
-            <Person name={names[3]}></Person>
-          </div>
-        </div>
+        <ProductCart product={products[0]}></ProductCart>
+        <ProductCart product={products[1]}></ProductCart>
+        <ProductCart product={products[2]}></ProductCart>
       </header>
     </div>
   );
@@ -32,6 +26,7 @@ function App() {
 var nameStyle = {
   color: "green"
 }
+
 function Person(props) {
   return (
     <div style={{ backgroundColor: "goldenrod", borderRadius: "20px", padding: "10px", margin: "10px" }}>
@@ -45,4 +40,27 @@ function Person(props) {
   );
 }
 
+function ProductCart(props) {
+  const productStyle = {
+    border:"1px solid grey",
+    borderRadius: "5px",
+    backgroundColor: "lightgray",
+    height: "200px",
+    width: "300px"
+
+  }
+  let {Name, Price} = props.product;
+  return (
+    <div style={productStyle}>
+      <h3>Name:{Name} </h3>
+      <h2>Price:{Price} </h2>
+      <p>Product Details: </p>
+      <button>buy now</button>
+    </div>
+  )
+}
+
 export default App;
+
+
+
