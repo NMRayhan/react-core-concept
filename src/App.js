@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 const products = [
@@ -25,20 +25,20 @@ function App() {
                 <div className="col-3">
                   <ProductCart product={product}></ProductCart>
                 </div>
-
               )
             })
           }
         </div>
-        <div>
-          <ul>
+        {/* <div>
+          <ol>
             {
               products.map(product => {
                 return <li>{product.name}</li>
               })
             }
-          </ul>
-        </div>
+          </ol>
+        </div> */}
+        <UserPost></UserPost>
       </header>
     </div>
   );
@@ -52,8 +52,9 @@ function ProductCart(props) {
     backgroundColor: "lightgray",
     height: "300px",
     width: "250px",
-    color: "black",
-    marginTop: "10px"
+    marginTop: "10px",
+    color: "black"
+    
   }
   return (
     <div style={productStyle}>
@@ -61,6 +62,44 @@ function ProductCart(props) {
       <h2>{props.product.price} </h2>
       <p>{props.product.discription} </p>
       <button className="btn btn-info">Buy Now</button>
+    </div>
+  )
+}
+
+function UserPost() {
+
+  var postStyle = {
+    backgroundColor: "#9BB7D4",
+    borderRadius: "10px",
+    width: "250px",
+    marginTop: "10px",
+    fontFamily: 'Oswald',
+    color: "black",
+    marginLeft: "15px"
+  }
+
+  const [posts, setPost] = useState([]);
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(data => setPost(data));
+  }, [])
+  return (
+    <div>
+      {
+        <div className="container row justify-content-center">
+          {
+            posts.map(post => {
+              return (
+                <div className="col-3" style={postStyle}>
+                  <h4 style={{color:"#00A170"}}>{post.title}</h4>
+                  <p>{post.body}</p>
+                </div>
+              )
+            })
+          }
+        </div>
+      }
     </div>
   )
 }
