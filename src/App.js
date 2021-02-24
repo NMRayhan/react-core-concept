@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 
 const products = [
@@ -16,11 +17,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Counter></Counter>
         <div className="row justify-content-center container">
           {
             products.map(product => {
               return (
-
                 <div className="col-3">
                   <ProductCart product={product}></ProductCart>
                 </div>
@@ -45,7 +46,7 @@ function App() {
 
 
 function ProductCart(props) {
-  const productStyle = {
+  const productStyle = { // product card style Object
     border: "1px solid grey",
     borderRadius: "5px",
     backgroundColor: "lightgray",
@@ -54,13 +55,23 @@ function ProductCart(props) {
     color: "black",
     marginTop: "10px"
   }
-
   return (
     <div style={productStyle}>
       <h3>{props.product.name} </h3>
       <h2>{props.product.price} </h2>
       <p>{props.product.discription} </p>
-      <button>buy now</button>
+      <button className="btn btn-info">Buy Now</button>
+    </div>
+  )
+}
+
+function Counter() {
+  //useState Function
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <h1>Count :{count} </h1>
+      <button className="btn btn-info" onClick={() => setCount(count + 1)}>Increase</button>
     </div>
   )
 }
