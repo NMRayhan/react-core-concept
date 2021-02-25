@@ -13,31 +13,25 @@ const products = [
 ]
 
 function App() {
-
+  const [count, setCount] = useState(0);
   return (
     <div className="App">
+      <div className="d-flex flex-row-reverse container bg-dark text-primary">
+        <ProductCartItem item={count}></ProductCartItem>
+      </div>
       <header className="App-header">
-        <Counter></Counter>
         <div className="row justify-content-center container">
           {
             products.map(product => {
               return (
                 <div className="col-3">
-                  <ProductCart product={product}></ProductCart>
+                  <ProductCartFunction product={product}></ProductCartFunction>
+                  <button className="btn btn-info" onClick={() => setCount(count + 1)}><i className="fas fa-shopping-cart"></i></button>
                 </div>
               )
             })
           }
         </div>
-        {/* <div>
-          <ol>
-            {
-              products.map(product => {
-                return <li>{product.name}</li>
-              })
-            }
-          </ol>
-        </div> */}
         <UserPost></UserPost>
       </header>
     </div>
@@ -45,7 +39,7 @@ function App() {
 }
 
 
-function ProductCart(props) {
+function ProductCartFunction(props) {
   const productStyle = { // product card style Object
     border: "1px solid grey",
     borderRadius: "5px",
@@ -54,14 +48,16 @@ function ProductCart(props) {
     width: "250px",
     marginTop: "10px",
     color: "black"
-    
   }
+
+
+
   return (
     <div style={productStyle}>
       <h3>{props.product.name} </h3>
       <h2>{props.product.price} </h2>
       <p>{props.product.discription} </p>
-      <button className="btn btn-info">Buy Now</button>
+
     </div>
   )
 }
@@ -92,7 +88,7 @@ function UserPost() {
             posts.map(post => {
               return (
                 <div className="col-3" style={postStyle}>
-                  <h4 style={{color:"#00A170"}}>{post.title}</h4>
+                  <h4 style={{ color: "#00A170" }}>{post.title}</h4>
                   <p>{post.body}</p>
                 </div>
               )
@@ -104,13 +100,10 @@ function UserPost() {
   )
 }
 
-function Counter() {
-  //useState Function
-  const [count, setCount] = useState(0);
+function ProductCartItem(props) {
   return (
     <div>
-      <h1>Count :{count} </h1>
-      <button className="btn btn-info" onClick={() => setCount(count + 1)}>Increase</button>
+      <i className="fas fa-shopping-cart fs-1 text-info sticky-md-top">{props.item}</i>
     </div>
   )
 }
