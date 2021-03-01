@@ -1,0 +1,7 @@
+.country h2:hover, .country h4:hover {
+    color: blueviolet;
+}
+.country img{
+    width: 30%;
+    margin-bottom: 10px;
+}
