@@ -5,7 +5,6 @@ const countryStyle = { border: "1px solid red", backgroundColor: "gainsboro", bo
 const Country = (props) => {
     const { name, capital, region, flag } = props.Country;
     const handle = props.handleCountry
-    // const { addCountry } = props.addCountryHandle
     return (
         <div style={countryStyle} className="countrys">
             <div className="country">

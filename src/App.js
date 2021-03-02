@@ -1,28 +1,42 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import Cart from './Components/Cart/Cart';
 import Country from './Components/Country/Country';
+import TestData from './Data/MOCK_DATA.json'
 
 
 function App() {
-  const [country, setCountry] = useState([])
-  const handleCountry = (Country) => { 
-    setCountry([...country, Country])
-   }
+  const [countrys, setCountry] = useState([])
+  const [cart, setCart] = useState([])
+  const [testData, setTestData] = useState([])
+  const handleCountry = (Country) => {
+    const newCart = [...cart, Country];
+    setCart(newCart);
+  }
+
+  useEffect(() => {
+    setTestData(TestData);
+    console.log(TestData);
+    console.log(TestData.length);
+  }, [])
+
+
+
   useEffect(() => {
     fetch('https://restcountries.eu/rest/v2/all')
       .then(res => res.json())
       .then(data => {
         setCountry(data);
-        data.map(country => country.name)
       });
   }, [])
 
   return (
     <div className="App">
-      <TotalPopulation TotalPopulation={country}></TotalPopulation>
+      <h1>Added Country : {cart.length}</h1>
+      <Cart Carts={cart}></Cart>
       <div className="row justify-content-between" style={{ width: "80%", margin: "0 auto" }}>
         {
-          country.map(country => {
+          countrys.map(country => {
             return (
               <div className="col-4">
                 <Country Country={country} key={country.numericCode} handleCountry={handleCountry}></Country>
@@ -38,19 +52,6 @@ function App() {
   );
 }
 
-function TotalPopulation(props){
-  const population = props.TotalPopulation;
-  let total = 0;
-  for (let i = 0; i < population.length; i++) {
-    const country = population[i];
-    total = total + country.population
-  }
-  return (
-    <div>
-      <h1>Total Population : {total}</h1>
-    </div>
-  )
-}
 export default App;
 
 
